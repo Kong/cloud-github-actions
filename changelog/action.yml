@@ -1,0 +1,28 @@
+---
+name: Changelog Generator
+description: Simple changelog generator based on local git history
+inputs:
+  branch:
+    description: The branch to generate changelog from
+    required: true
+  file:
+    description: The name of the output file
+    required: true
+  repo-url:
+    description: The repository URL
+    required: true
+  next-tag:
+    description: The next version of the tag
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - --branch
+  - ${{ inputs.branch }}
+  - --next-tag
+  - ${{ inputs.next-tag }}
+  - --repo-url
+  - ${{ inputs.repo-url }}
+  - --file
+  - ${{ inputs.file }}
